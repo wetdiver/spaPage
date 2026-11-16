@@ -19,6 +19,9 @@ jobs:
           echo "FTP_SERVER is ftp.sxm-massage-onsite.com: $([ "$trimmed" = "ftp.sxm-massage-onsite.com" ] && echo yes || echo no)"
           echo "FTP_SERVER is sxm-massage-onsite.com: $([ "$trimmed" = "sxm-massage-onsite.com" ] && echo yes || echo no)"
           echo "FTP_USERNAME is github@sxm-massage-onsite.com: $([ "$FTP_USERNAME" = "github@sxm-massage-onsite.com" ] && echo yes || echo no)"
+          echo "== certificate on the FTP server:"
+          echo | timeout 20 openssl s_client -starttls ftp -connect sxm-massage-onsite.com:21 2>/dev/null \
+            | openssl x509 -noout -subject -ext subjectAltName 2>/dev/null | sed 's/^/   /'
           for h in "$trimmed" ftp.sxm-massage-onsite.com sxm-massage-onsite.com; do
             ip=$(getent hosts "$h" | awk '{print $1}' | head -1)
             echo "== $h -> ${ip:-DOES NOT EXIST}"
