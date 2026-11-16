@@ -24,6 +24,31 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Upload changed files over FTP
+        id: ftp1
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          # GoDaddy's hosting server for this site (its secure-FTP certificate is issued to this name,
+          # not to sxm-massage-onsite.com). If GoDaddy ever moves the hosting, update it here.
+          server: p3plzcpnl506973.prod.phx3.secureserver.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            monitor/**
+            README.md
+            .gitignore
+
+      - name: Wait a moment if GoDaddy timed out
+        if: steps.ftp1.outcome == 'failure'
+        run: sleep 45
+
+      - name: Retry the upload once
+        if: steps.ftp1.outcome == 'failure'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           # GoDaddy's hosting server for this site (its secure-FTP certificate is issued to this name,
