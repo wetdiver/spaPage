@@ -1,0 +1,34 @@
+name: FTP connection check
+
+# Manual test: which FTP address works, and what folder the FTP account sees.
+# Uploads nothing.
+on: workflow_dispatch
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test addresses and login
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          trimmed="$(echo -n "$FTP_SERVER" | tr -d '[:space:]')"
+          echo "FTP_SERVER secret: length ${#FTP_SERVER}, has spaces/newline: $([ "$trimmed" = "$FTP_SERVER" ] && echo no || echo YES)"
+          echo "FTP_SERVER is ftp.sxm-massage-onsite.com: $([ "$trimmed" = "ftp.sxm-massage-onsite.com" ] && echo yes || echo no)"
+          echo "FTP_SERVER is sxm-massage-onsite.com: $([ "$trimmed" = "sxm-massage-onsite.com" ] && echo yes || echo no)"
+          echo "FTP_USERNAME is github@sxm-massage-onsite.com: $([ "$FTP_USERNAME" = "github@sxm-massage-onsite.com" ] && echo yes || echo no)"
+          for h in "$trimmed" ftp.sxm-massage-onsite.com sxm-massage-onsite.com; do
+            ip=$(getent hosts "$h" | awk '{print $1}' | head -1)
+            echo "== $h -> ${ip:-DOES NOT EXIST}"
+            [ -z "$ip" ] && continue
+            timeout 8 bash -c "</dev/tcp/$h/21" && echo "   port 21 open" || { echo "   port 21 closed"; continue; }
+            if out=$(curl -sS --max-time 20 --ssl-reqd -u "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$h/" --list-only 2>&1); then
+              echo "   FTPS login OK. Files the account sees:"; echo "$out" | head -40 | sed 's/^/     /'
+            else
+              echo "   FTPS failed: $out"
+              out=$(curl -sS --max-time 20 -u "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$h/" --list-only 2>&1) \
+                && { echo "   plain FTP login OK:"; echo "$out" | head -40 | sed 's/^/     /'; } || echo "   plain FTP failed: $out"
+            fi
+          done
