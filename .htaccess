@@ -1,0 +1,67 @@
+# Open index.html automatically and never show a folder listing
+DirectoryIndex index.html
+Options -Indexes
+
+# Correct file types (needed with the nosniff header below)
+AddType image/webp .webp
+AddType video/mp4 .mp4
+AddType application/manifest+json .webmanifest
+AddType font/woff2 .woff2
+
+# Browser caching: photos, video, icons and fonts are kept for a year,
+# the stylesheet for a week, pages are always checked for updates.
+# If you ever replace a photo or video, give the new file a new name.
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/html "access plus 0 seconds"
+ExpiresByType text/css "access plus 1 week"
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/x-icon "access plus 1 year"
+ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+ExpiresByType video/mp4 "access plus 1 year"
+ExpiresByType font/woff2 "access plus 1 year"
+ExpiresByType application/pdf "access plus 1 week"
+ExpiresByType application/manifest+json "access plus 1 week"
+</IfModule>
+<IfModule mod_headers.c>
+<FilesMatch "\.(webp|jpe?g|png|ico|mp4|woff2)$">
+Header set Cache-Control "public, max-age=31536000"
+</FilesMatch>
+<FilesMatch "\.css$">
+Header set Cache-Control "public, max-age=604800"
+</FilesMatch>
+<FilesMatch "\.html$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# Send /index.html and /folder/index.html to the clean address (avoids duplicate pages in Google)
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+# Old duplicate copy of the site in /st-maarten-onsite-massage/ (if it was ever uploaded) goes to the real pages
+RewriteRule ^st-maarten-onsite-massage/(.*)$ /$1 [R=301,L]
+# Send www.sxm-massage-onsite.com to sxm-massage-onsite.com (one address for Google).
+# Only matches the live domain, so localhost is not affected.
+RewriteCond %{HTTP_HOST} ^www\.sxm-massage-onsite\.com$ [NC]
+RewriteRule ^(.*)$ https://sxm-massage-onsite.com/$1 [R=301,L]
+# Send http:// to https:// on the live domain only
+RewriteCond %{HTTP_HOST} ^sxm-massage-onsite\.com$ [NC]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://sxm-massage-onsite.com/$1 [R=301,L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+Header always set Strict-Transport-Security "max-age=31536000"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-Content-Type-Options "nosniff"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+# Allows this site, Google Fonts and Google Analytics only
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://*.g.doubleclick.net; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com; media-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+</IfModule>
