@@ -1,0 +1,29 @@
+{
+  "site": "https://sxm-massage-onsite.com",
+  "phone_digits": "17215540065",
+  "also_allowed_numbers": {
+    "17215265574": "SXM Massage Mobile sister site (listed in the FAQ on purpose)"
+  },
+  "max_page_seconds": 5,
+  "ssl_warn_days": 14,
+  "skip_link_hosts": [
+    "wa.me",
+    "api.whatsapp.com",
+    "fonts.googleapis.com",
+    "fonts.gstatic.com",
+    "www.googletagmanager.com",
+    "schema.org"
+  ],
+  "must_be_hidden": [
+    ".htaccess"
+  ],
+  "not_site_files": [
+    "README.md",
+    ".ftp-deploy-sync-state.json"
+  ],
+  "not_site_folders": [
+    ".git",
+    ".github",
+    "monitor"
+  ]
+}

@@ -1,0 +1,44 @@
+name: Site monitor
+
+on:
+  schedule:
+    - cron: "17 * * * *"      # every hour, at :17
+  workflow_dispatch:           # "Run workflow" button in the Actions tab
+  workflow_run:                # right after every upload to GoDaddy
+    workflows: ["Deploy to GoDaddy"]
+    types: [completed]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: site-monitor
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Give a fresh upload a moment to settle
+        if: github.event_name == 'workflow_run'
+        run: sleep 30
+
+      - name: Check the live site against the rules
+        id: check
+        continue-on-error: true
+        run: python monitor/check_site.py --report monitor-report.md
+
+      - name: Open, update or close the alert
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OUTCOME: ${{ steps.check.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash monitor/alert.sh monitor-report.md
