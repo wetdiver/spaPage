@@ -65,3 +65,21 @@ jobs:
             monitor/**
             README.md
             .gitignore
+
+      - name: Tell Bing and other IndexNow search engines what changed
+        if: success()
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import json, re, urllib.request
+          urls = re.findall(r"<loc>(https://sxm-massage-onsite\.com/[^<]*/?)</loc>", open("sitemap.xml").read())
+          urls = [u for u in urls if not u.endswith((".webp", ".jpg", ".png"))]
+          body = json.dumps({"host": "sxm-massage-onsite.com", "key": "dff120c7c75945a6bcfbadebc0888014",
+                             "keyLocation": "https://sxm-massage-onsite.com/dff120c7c75945a6bcfbadebc0888014.txt",
+                             "urlList": urls}).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body,
+                                       headers={"Content-Type": "application/json; charset=utf-8"})
+          try:
+              with urllib.request.urlopen(req, timeout=30) as r: print("IndexNow:", r.status, "for", len(urls), "pages")
+          except Exception as e: print("IndexNow not accepted this time:", e)
+          PY
