@@ -3,32 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8R6DB76BGK"></script>
+<!-- Google Analytics (skipped on localhost so testing doesn't count).
+     Loads after the page is ready (first scroll/tap, or 2.5s after load) so it doesn't slow the first screen.
+     A WhatsApp/call tap that happens before it has loaded waits up to ~1s so the click is still counted. -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8R6DB76BGK');
+(function(){
+  var h=location.hostname;
+  if(!h||h==="localhost"||h==="127.0.0.1"||h.endsWith(".local")||h.endsWith(".test")) return;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments);};
+  gtag("js",new Date()); gtag("config","G-8R6DB76BGK");
+  var started=false, ready=false;
+  function load(){ if(started) return; started=true;
+    var s=document.createElement("script"); s.async=true; s.onload=function(){ready=true;};
+    s.src="https://www.googletagmanager.com/gtag/js?id=G-8R6DB76BGK"; document.head.appendChild(s); }
+  ["scroll","pointerdown","keydown","touchstart"].forEach(function(t){ addEventListener(t,load,{once:true,passive:true}); });
+  addEventListener("load",function(){ setTimeout(load,2500); });
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a"); if(!a) return;
+    var name, p={link_url:a.href}, txt=(a.textContent||"").trim().slice(0,60);
+    if(a.href.indexOf("wa.me/")>-1){ name="whatsapp_click"; p.link_text=txt; }
+    else if(a.href.indexOf("tel:")===0){ name="phone_call_click"; }
+    else if(a.hostname==="sxm-massage-mobile.com"){ name=a.pathname.indexOf("/blog")===0?"blog_click":"sister_site_click"; p.link_text=txt; }
+    if(!name) return;
+    var sameTab=!a.target||a.target==="_self", plain=!(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button);
+    if(ready||!sameTab||!plain){ load(); gtag("event",name,p); return; }
+    e.preventDefault(); load();
+    var gone=false; function go(){ if(gone) return; gone=true; location.href=a.href; }
+    p.event_callback=go; p.event_timeout=1000; gtag("event",name,p); setTimeout(go,1200);
+  });
+})();
 </script>
-<!-- Counts WhatsApp, phone and blog/sister-site taps as Google Analytics events -->
-<script>
-document.addEventListener("click",function(e){
-  var a=e.target.closest&&e.target.closest("a"); if(!a||typeof gtag!=="function") return;
-  var txt=(a.textContent||"").trim().slice(0,60);
-  if(a.href.indexOf("wa.me/")>-1) gtag("event","whatsapp_click",{link_url:a.href,link_text:txt,transport_type:"beacon"});
-  else if(a.href.indexOf("tel:")===0) gtag("event","phone_call_click",{link_url:a.href,transport_type:"beacon"});
-  else if(a.hostname==="sxm-massage-mobile.com") gtag("event",a.pathname.indexOf("/blog")===0?"blog_click":"sister_site_click",{link_url:a.href,link_text:txt,transport_type:"beacon"});
-});
-</script>
-<title>SXM Onsite Massage | Group Massage in St. Maarten</title>
+<title>Group &amp; Bachelorette Massage in St. Maarten | SXM Onsite Massage</title>
 <meta name="description" content="Onsite group massage at your St. Maarten villa for bachelorettes, birthdays and wedding parties. Tables set up in pairs. $88 per person, $85 for 10+.">
 <link rel="canonical" href="https://sxm-massage-onsite.com/group-massage/">
 <meta name="theme-color" content="#16302A">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SXM Onsite Massage">
-<meta property="og:title" content="SXM Onsite Massage | Group Massage in St. Maarten">
+<meta property="og:title" content="Group &amp; Bachelorette Massage in St. Maarten | SXM Onsite Massage">
 <meta property="og:description" content="Onsite group massage at your St. Maarten villa for bachelorettes, birthdays and wedding parties. Tables set up in pairs. $88 per person, $85 for 10+.">
 <meta property="og:url" content="https://sxm-massage-onsite.com/group-massage/">
 <meta property="og:image" content="https://sxm-massage-onsite.com/images/sxm-onsite-massage-share.jpg">
