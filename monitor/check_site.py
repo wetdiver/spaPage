@@ -103,8 +103,16 @@ def page_path(file_path):
     return file_path[: -len("index.html")]
 
 
+# GoDaddy adds its own "performance monitoring" script to every page it serves.
+# It isn't part of the site, so it is ignored when comparing.
+GODADDY_INJECT = re.compile(
+    r"<script>\s*'undefined'\s*===\s*typeof _trfq.*?</script>"
+    r"|<script[^>]+wsimg\.com/traffic-assets/[^>]*>\s*</script>", re.S)
+
+
 def norm_text(b):
-    return b.decode("utf-8", "replace").replace("\r\n", "\n").rstrip()
+    t = b.decode("utf-8", "replace").replace("\r\n", "\n")
+    return GODADDY_INJECT.sub("", t).rstrip()
 
 
 def short_diff(old, new, limit=16):
