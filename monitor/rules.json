@@ -26,5 +26,8 @@
     ".git",
     ".github",
     "monitor"
+  ],
+  "forbidden_word_hashes": [
+    "76baa2c486977e326cffa06d7d80cb4973f587d5ed34b2d5e8ad4199a222fad1"
   ]
 }

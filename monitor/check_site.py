@@ -41,6 +41,7 @@ RULE_NAMES = [
     "Security lock (SSL)",
     "Redirects",
     "Private files hidden",
+    "Forbidden words",
 ]
 
 
@@ -250,6 +251,14 @@ def run(site):
         if live_tel < repo_tel:
             rep.fail("Your phone number", f"`{path}`: call buttons missing ({live_tel} live, should be {repo_tel})")
 
+        # banned words are stored only as SHA-256 fingerprints, so the words never appear in this public repo
+        banned = set(RULES.get("forbidden_word_hashes", []))
+        if banned:
+            words = set(re.findall(r"[a-zà-ÿ]+", re.sub(r"<[^>]+>", " ", live).lower() + " " + live.lower()))
+            hits = [w for w in words if hashlib.sha256(w.encode()).hexdigest() in banned]
+            if hits:
+                rep.fail("Forbidden words", f"`{path}` contains a banned word (first letter: {hits[0][0].upper()}), which must never appear on the site")
+
         lp, rp = prices_in(live), prices_in(repo)
         if lp != rp:
             parts = []
@@ -272,6 +281,7 @@ def run(site):
         rep.note("Your phone number", f"+{phone} on every WhatsApp and call button, no strange numbers")
         rep.note("Prices", "same prices as the GitHub copy on every page")
         rep.note("No surprise changes", "every page and file matches the GitHub copy")
+        rep.note("Forbidden words", "none of the banned words appear on any page")
 
     # 2 + 5: every other file (photos, video, css, pdf, icons...). Text files every run,
     # photos/videos/fonts every 6 hours and right after an upload, to keep the request count low.
