@@ -19,7 +19,8 @@
   ],
   "not_site_files": [
     "README.md",
-    ".ftp-deploy-sync-state.json"
+    ".ftp-deploy-sync-state.json",
+    ".gitignore"
   ],
   "not_site_folders": [
     ".git",
