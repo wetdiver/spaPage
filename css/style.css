@@ -216,7 +216,7 @@ section{padding:84px 0}
 
 /* booking: glass card over an evening poolside photo */
 .book{position:relative;padding:120px 0;background:var(--mist);overflow:hidden;isolation:isolate}
-.book::before{content:"";position:absolute;inset:-40px;z-index:-1;background:url(../images/beach-massage-table-umbrella-st-maarten.webp) center/cover no-repeat;filter:blur(10px) saturate(1.1) brightness(1.08)}
+.book::before{content:"";position:absolute;inset:0;z-index:-1;background:url(../images/villa-terrace-massage-table-ocean-view-st-maarten.webp) center 55%/cover no-repeat}
 .book .wrap{max-width:720px;border-radius:30px;padding:46px 44px 40px;text-align:center}
 .book h2::after{margin-left:auto;margin-right:auto}
 .book p{max-width:52ch;margin-left:auto;margin-right:auto;color:var(--ink)}
