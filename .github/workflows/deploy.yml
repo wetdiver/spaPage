@@ -26,7 +26,9 @@ jobs:
       - name: Upload changed files over FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          # GoDaddy's hosting server for this site (its secure-FTP certificate is issued to this name,
+          # not to sxm-massage-onsite.com). If GoDaddy ever moves the hosting, update it here.
+          server: p3plzcpnl506973.prod.phx3.secureserver.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
