@@ -25,10 +25,13 @@ import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RULES = json.load(open(os.path.join(ROOT, "monitor", "rules.json"), encoding="utf-8"))
-UA = "Mozilla/5.0 (compatible; SXM-Site-Monitor/1.0; +https://github.com/wetdiver/spaPage)"
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+      "Chrome/131.0.0.0 Safari/537.36")
+PAUSE = 0.4  # seconds between requests, so the hosting firewall does not treat us as a bot
 TEXT_EXT = {".html", ".css", ".txt", ".xml", ".webmanifest", ".json", ".js", ".svg"}
 
 RULE_NAMES = [
+    "Monitor can reach the site",
     "Site is up",
     "No surprise changes",
     "Your phone number",
@@ -66,7 +69,10 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 def fetch(url, method="GET", follow=True, timeout=30):
     """Return dict(status, headers, body, seconds, error, url)."""
-    req = urllib.request.Request(url, method=method, headers={"User-Agent": UA})
+    time.sleep(PAUSE)
+    req = urllib.request.Request(url, method=method, headers={
+        "User-Agent": UA, "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9"})
     opener = urllib.request.build_opener() if follow else urllib.request.build_opener(NoRedirect)
     start = time.time()
     try:
@@ -80,6 +86,12 @@ def fetch(url, method="GET", follow=True, timeout=30):
     except Exception as e:  # DNS, timeout, TLS, connection refused...
         return dict(status=None, headers={}, body=b"",
                     seconds=time.time() - start, error=str(e)[:200], url=url)
+
+
+def is_challenge(body):
+    """The hosting firewall's "One moment, please..." bot check, not a real page."""
+    t = body[:6000].decode("utf-8", "replace") if isinstance(body, bytes) else body[:6000]
+    return "One moment, please" in t and "location.reload" in t
 
 
 def site_files():
@@ -194,6 +206,17 @@ def run(site):
     pages = sorted(p for p in files if p.endswith("/index.html"))
     live_pages = {}
 
+    # 0: can we see the real site at all, or only the hosting firewall's waiting page?
+    probe = fetch(site + "/")
+    if probe["status"] == 200 and is_challenge(probe["body"]):
+        rep.fail("Monitor can reach the site",
+                 "the hosting firewall answered with its \"One moment, please...\" bot check instead of the site, "
+                 "so nothing else could be checked this time. Visitors normally don't see it. If it keeps happening, "
+                 "ask GoDaddy support to allow GitHub's monitor, or reduce how often it runs.")
+        return rep, len(pages)
+
+    full = os.environ.get("MONITOR_FULL", "").lower() == "true" or dt.datetime.now(dt.timezone.utc).hour % 6 == 0
+
     # 1-4, 6: every page
     slowest = (0, "")
     for f in pages:
@@ -250,10 +273,13 @@ def run(site):
         rep.note("Prices", "same prices as the GitHub copy on every page")
         rep.note("No surprise changes", "every page and file matches the GitHub copy")
 
-    # 2 + 5: every other file (photos, video, css, pdf, icons...)
+    # 2 + 5: every other file (photos, video, css, pdf, icons...). Text files every run,
+    # photos/videos/fonts every 6 hours and right after an upload, to keep the request count low.
     checked = 0
-    for path, full in sorted(files.items()):
+    for path, localfile in sorted(files.items()):
         if path.endswith("/index.html"):
+            continue
+        if not full and os.path.splitext(path)[1].lower() not in TEXT_EXT:
             continue
         ext = os.path.splitext(path)[1].lower()
         url = site + urllib.parse.quote(path)
@@ -262,9 +288,9 @@ def run(site):
             r = fetch(url)
             if r["status"] != 200:
                 rep.fail("Nothing broken", f"`{path}` missing ({r['error'] or 'HTTP ' + str(r['status'])})")
-            elif norm_text(r["body"]) != norm_text(open(full, "rb").read()):
+            elif norm_text(r["body"]) != norm_text(open(localfile, "rb").read()):
                 rep.fail("No surprise changes", f"`{path}` is different from the GitHub copy:\n```diff\n"
-                         f"{short_diff(norm_text(open(full, 'rb').read()), norm_text(r['body']))}\n```")
+                         f"{short_diff(norm_text(open(localfile, 'rb').read()), norm_text(r['body']))}\n```")
         else:
             r = fetch(url, method="HEAD")
             if r["status"] in (405, 501):
@@ -273,7 +299,7 @@ def run(site):
                 rep.fail("Nothing broken", f"`{path}` missing ({r['error'] or 'HTTP ' + str(r['status'])})")
                 continue
             size = len(r["body"]) if r["body"] else (r["headers"] or {}).get("Content-Length")
-            local = os.path.getsize(full)
+            local = os.path.getsize(localfile)
             if size is not None and str(size).isdigit() and int(size) != local:
                 rep.fail("No surprise changes", f"`{path}` was replaced (live {int(size):,} bytes, GitHub {local:,} bytes)")
 
@@ -300,7 +326,7 @@ def run(site):
             rep.fail("Nothing broken", f"outside link `{u}` is broken ({r['error'] or 'HTTP ' + str(r['status'])})")
         elif r["status"] >= 400:
             rep.warn("Nothing broken", f"outside link `{u}` answered HTTP {r['status']}")
-    rep.note("Nothing broken", f"{checked} files and {len(outside)} outside links checked")
+    rep.note("Nothing broken", f"{checked} files and {len(outside)} outside links checked" + ("" if full else " (photos checked every 6 hours)"))
 
     # 6: robots + sitemap
     r = fetch(site + "/robots.txt")

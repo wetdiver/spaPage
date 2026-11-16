@@ -34,6 +34,8 @@ jobs:
       - name: Check the live site against the rules
         id: check
         continue-on-error: true
+        env:
+          MONITOR_FULL: ${{ github.event_name != 'schedule' }}
         run: python monitor/check_site.py --report monitor-report.md
 
       - name: Open, update or close the alert
