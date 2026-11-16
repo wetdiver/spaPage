@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sxm-massage-onsite.com/sitemap.xml
