@@ -317,3 +317,18 @@ footer strong{font-family:var(--serif);font-weight:400;font-size:1.3rem;color:va
   section{padding:64px 0}
 }
 @media print{.wa-float{display:none}}
+
+/* Relaxation delivered video banner */
+.vbanner{text-align:center}
+.vbanner .intro{margin-left:auto;margin-right:auto}
+.fb-video{position:relative;max-width:900px;margin:28px auto 0;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#111;box-shadow:0 18px 48px rgba(43,40,38,.18)}
+.fb-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.fb-play{all:unset;cursor:pointer;display:block;position:absolute;inset:0}
+.fb-play img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.fb-play:hover img{transform:scale(1.02)}
+.fb-play-icon{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(245,247,245,.88);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.fb-play-icon::after{content:"";position:absolute;left:34px;top:26px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent var(--palm)}
+.fb-play:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.vbanner-cta{justify-content:center;margin-top:24px}
+@media (prefers-reduced-motion:reduce){.fb-play img{transition:none}}
+.vbanner h2::after{margin-left:auto;margin-right:auto}

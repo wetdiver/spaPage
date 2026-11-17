@@ -60,7 +60,7 @@
 <link rel="preload" as="image" href="images/intro-video-poster.webp" media="(min-aspect-ratio: 3.001/4)" fetchpriority="high">
 <link rel="preload" href="fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=20261117d">
+<link rel="stylesheet" href="css/style.css?v=20261117e">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -252,6 +252,23 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Relaxation delivered",
+  "description": "A short video from St. Maarten Massage Onsite Services, the onsite massage team that sets up a full spa massage at villas, hotels, Airbnbs and yachts across St. Maarten and St. Martin.",
+  "thumbnailUrl": [
+    "https://sxm-massage-onsite.com/images/relaxation-delivered-video-cover-villa-pool.webp"
+  ],
+  "embedUrl": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fstmaartenmassage%2Fvideos%2F2107593692921947%2F&show_text=false&width=1280",
+  "url": "https://www.facebook.com/stmaartenmassage/videos/2107593692921947/",
+  "publisher": {
+    "@id": "https://sxm-massage-onsite.com/#business"
+  },
+  "inLanguage": "en"
+}
+</script>
 </head>
 <body class="has-vhero">
 <div class="topbar">
@@ -330,6 +347,34 @@
   if(!still){ addEventListener('load',function(){ setTimeout(function(){ if(wantPlay) set(false); },300); }); }
   b.addEventListener('click',function(){ set(wantPlay); });
 })();
+</script>
+<section id="video" class="vbanner band">
+  <div class="wrap">
+    <h2>Relaxation delivered</h2>
+    <p class="intro measure">Take a quick look, then book yours on WhatsApp.</p>
+    <div class="fb-video" data-embed="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fstmaartenmassage%2Fvideos%2F2107593692921947%2F&show_text=false&width=1280&amp;autoplay=true">
+      <button type="button" class="fb-play" aria-label="Play the video: Relaxation delivered">
+        <img src="images/relaxation-delivered-video-cover-villa-pool-800.webp" srcset="images/relaxation-delivered-video-cover-villa-pool-800.webp 800w, images/relaxation-delivered-video-cover-villa-pool.webp 1280w" sizes="(min-width:960px) 900px, 100vw" alt="Massage on a villa terrace overlooking an infinity pool and the sea in St. Maarten" width="1280" height="720" loading="lazy" decoding="async">
+        <span class="fb-play-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="cta-row vbanner-cta">
+      <a class="btn btn-wa" href="https://wa.me/17215540065?text=Hi%2C%20I%27d%20like%20to%20book%20an%20onsite%20massage" rel="noopener">Book on WhatsApp</a>
+      <a class="btn btn-line" href="https://www.facebook.com/stmaartenmassage/videos/2107593692921947/" target="_blank" rel="noopener">Watch on Facebook</a>
+    </div>
+  </div>
+</section>
+<script>
+document.querySelectorAll('.fb-video').forEach(function(box){
+  box.querySelector('.fb-play').addEventListener('click',function(){
+    var f=document.createElement('iframe');
+    f.src=box.getAttribute('data-embed'); f.title='Relaxation delivered (video)';
+    f.setAttribute('allow','autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share');
+    f.setAttribute('allowfullscreen',''); f.setAttribute('scrolling','no');
+    box.innerHTML=''; box.appendChild(f);
+    if(window.gtag) gtag('event','video_play',{video:'relaxation_delivered'});
+  });
+});
 </script>
 <section id="about">
   <div class="wrap">
