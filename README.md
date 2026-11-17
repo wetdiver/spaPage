@@ -1,6 +1,6 @@
 # sxm-massage-onsite.com
 
-The website files for **SXM Onsite Massage**, plus a monitor that watches the live site.
+The website files for **SXM Massage Onsite Service**, plus a monitor that watches the live site.
 
 GitHub is the master copy. Change a file here and it is uploaded to GoDaddy automatically.
 Change a file directly in GoDaddy and the monitor will flag it, and the next upload will put the GitHub version back.
