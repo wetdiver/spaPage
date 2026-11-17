@@ -68,6 +68,7 @@ h2::after{content:"";display:block;width:56px;height:1px;background:var(--gold);
 .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px}
 .brand{font-size:1.45rem;letter-spacing:.01em;text-decoration:none;line-height:1.1}
 .brand small{display:block;font-family:var(--sans);font-size:.78rem;color:var(--ink-soft);letter-spacing:.02em;margin-top:2px}
+@media (max-width:480px){.brand{font-size:1.15rem;letter-spacing:0}}
 .top nav{display:flex;gap:22px;font-size:.96rem}
 .top nav a{text-decoration:none;color:var(--ink-soft)}
 .top nav a:hover,.top nav a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:6px}
