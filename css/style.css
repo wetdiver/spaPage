@@ -262,6 +262,7 @@ section{padding:84px 0}
 .gallery a:hover img{transform:scale(1.03)}
 @media (prefers-reduced-motion:reduce){.gallery img{transition:none}}
 .gallery figcaption{font-size:.9rem;color:var(--ink-soft);padding-top:8px}
+.gallery figcaption a{display:inline;aspect-ratio:auto;background:none;border-radius:0;overflow:visible;color:var(--gold-deep);text-decoration:underline;text-underline-offset:3px}
 
 /* lightbox */
 .lightbox{border:0;padding:0;background:transparent;max-width:min(92vw,760px);max-height:92vh}
