@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Analytics (skipped on localhost so testing doesn't count).
+     Loads after the page is ready (first scroll/tap, or 2.5s after load) so it doesn't slow the first screen.
+     A WhatsApp/call tap that happens before it has loaded waits up to ~1s so the click is still counted. -->
+<script>
+(function(){
+  var h=location.hostname;
+  if(!h||h==="localhost"||h==="127.0.0.1"||h.endsWith(".local")||h.endsWith(".test")) return;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments);};
+  gtag("js",new Date()); gtag("config","G-8R6DB76BGK");
+  var started=false, ready=false;
+  function load(){ if(started) return; started=true;
+    var s=document.createElement("script"); s.async=true; s.onload=function(){ready=true;};
+    s.src="https://www.googletagmanager.com/gtag/js?id=G-8R6DB76BGK"; document.head.appendChild(s); }
+  ["scroll","pointerdown","keydown","touchstart"].forEach(function(t){ addEventListener(t,load,{once:true,passive:true}); });
+  addEventListener("load",function(){ setTimeout(load,2500); });
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a"); if(!a) return;
+    var name, p={link_url:a.href}, txt=(a.textContent||"").trim().slice(0,60);
+    if(a.href.indexOf("wa.me/")>-1){ name="whatsapp_click"; p.link_text=txt; }
+    else if(a.href.indexOf("tel:")===0){ name="phone_call_click"; }
+    else if(a.hostname==="sxm-massage-mobile.com"){ name=a.pathname.indexOf("/blog")===0?"blog_click":"sister_site_click"; p.link_text=txt; }
+    if(!name) return;
+    var sameTab=!a.target||a.target==="_self", plain=!(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button);
+    if(ready||!sameTab||!plain){ load(); gtag("event",name,p); return; }
+    e.preventDefault(); load();
+    var gone=false; function go(){ if(gone) return; gone=true; location.href=a.href; }
+    p.event_callback=go; p.event_timeout=1000; gtag("event",name,p); setTimeout(go,1200);
+  });
+})();
+</script>
+<title>TheHills Residence, Simpson Bay: Lagoon Views, No Car Needed</title>
+<meta name="description" content="TheHills Residence on Welfare Road, Simpson Bay: 1- and 2-bedroom apartments with lagoon views, an infinity pool and a rooftop jacuzzi, near beaches and dinner.">
+<link rel="canonical" href="https://sxm-massage-onsite.com/where-to-stay/thehills/">
+<meta name="theme-color" content="#16302A">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SXM Massage Onsite Service">
+<meta property="og:title" content="TheHills Residence, Simpson Bay: Lagoon Views, No Car Needed">
+<meta property="og:description" content="TheHills Residence on Welfare Road, Simpson Bay: 1- and 2-bedroom apartments with lagoon views, an infinity pool and a rooftop jacuzzi, near beaches and dinner.">
+<meta property="og:url" content="https://sxm-massage-onsite.com/where-to-stay/thehills/">
+<meta property="og:image" content="https://sxm-massage-onsite.com/images/sxm-onsite-massage-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Massage set up at a vacation rental in St. Maarten">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sxm-massage-onsite.com/images/sxm-onsite-massage-share.jpg">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<link rel="preload" href="../../fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../css/style.css?v=20261117c">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://sxm-massage-onsite.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Where to stay",
+      "item": "https://sxm-massage-onsite.com/where-to-stay/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "TheHills",
+      "item": "https://sxm-massage-onsite.com/where-to-stay/thehills/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TheHills Residence, Simpson Bay: Lagoon Views, No Car Needed",
+  "description": "TheHills Residence on Welfare Road, Simpson Bay: 1- and 2-bedroom apartments with lagoon views, an infinity pool and a rooftop jacuzzi, near beaches and dinner.",
+  "url": "https://sxm-massage-onsite.com/where-to-stay/thehills/",
+  "datePublished": "2026-11-17",
+  "dateModified": "2026-11-17",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Organization",
+    "name": "SXM Massage Onsite Service",
+    "url": "https://sxm-massage-onsite.com/"
+  },
+  "publisher": {
+    "@id": "https://sxm-massage-onsite.com/#business"
+  }
+}
+</script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <span class="tb-hours">Open daily 7:30am – 8pm</span>
+    <span class="tb-book">Book: <a class="tb-phone" href="tel:+17215540065"><span class="nw">+1-721-554-0065</span></a> <a class="tb-wa" href="https://wa.me/17215540065?text=Hi%2C%20I%27d%20like%20to%20book%20an%20onsite%20massage" rel="noopener">WhatsApp</a></span>
+  </div>
+</div>
+<header class="wrap top">
+  <a class="brand" href="../../">SXM Massage Onsite Service<small>sxm-massage-onsite.com</small></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav id="main-nav" aria-label="Main">
+    <a href="../../relaxation-massage/">Relaxation</a>
+    <a href="../../couples-massage/">Couples</a>
+    <a href="../../group-massage/">Groups</a>
+    <a href="../../yacht-massage/">Yachts</a>
+    <a href="../../airbnb-massage/">Airbnbs</a>
+    <a href="../../faq/">FAQ</a>
+    <a href="../../fr/" hreflang="fr" lang="fr" title="Version française">FR</a>
+    <a class="nav-m" href="../../guide/">Complete guide</a>
+    <a class="nav-m" href="../../where-to-stay/">Where to stay</a>
+    <a href="#book">Book</a>
+  </nav>
+</header>
+<script>
+(function(){
+  var h=document.querySelector('header.top'), b=h&&h.querySelector('.menu-btn'); if(!b) return;
+  function close(){ h.classList.remove('open'); b.setAttribute('aria-expanded','false'); }
+  b.addEventListener('click',function(){ var o=h.classList.toggle('open'); b.setAttribute('aria-expanded',o?'true':'false'); });
+  h.querySelectorAll('nav a').forEach(function(a){ a.addEventListener('click',close); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&h.classList.contains('open')){ close(); b.focus(); } });
+  document.addEventListener('click',function(e){ if(h.classList.contains('open')&&!h.contains(e.target)) close(); });
+})();
+</script>
+<main>
+<section class="hero sub" style="padding-bottom:24px">
+  <div class="wrap">
+    <p class="crumbs"><a href="../../">Home</a> / <a href="../../where-to-stay/">Where to stay</a> / TheHills</p>
+    <h1>TheHills: Simpson Bay with a view</h1>
+    <p class="places">One- and two-bedroom apartments on Welfare Road.</p>
+    <p class="lede">We've set up massages at TheHills, including the garden terrace in our photos. It's an easy place to recommend if you'd rather skip the car.</p>
+  </div>
+</section>
+<!-- PHOTOS: add area photos here when they arrive -->
+<section style="padding:56px 0">
+  <div class="wrap measure">
+    <h2>What you get</h2>
+    <p><a href="https://vacation.rentals.thehillsresidence.com/" target="_blank" rel="noopener">TheHills Residence</a> rents one- and two-bedroom apartments. Every unit has its own balcony, garden or wall of glass, most looking out over the lagoon.</p>
+    <p>There's an infinity pool, plus a rooftop jacuzzi on each building with views all around.</p>
+  </div>
+</section>
+<section class="band" style="padding:56px 0">
+  <div class="wrap measure">
+    <h2>Why it works without a car</h2>
+    <p>TheHills is in Simpson Bay, so you're close to everything on our <a href="../../where-to-stay/simpson-bay/">Simpson Bay page</a>. Simpson Bay Beach is a short distance away, and so are the Simpson Bay bridge, restaurants, shops and the casino.</p>
+    <p>Spend the day at the beach, then come back up for the pool and the sunset.</p>
+  </div>
+</section>
+<section style="padding:56px 0">
+  <div class="wrap measure">
+    <h2>Good to know</h2>
+    <p>It's at 69 Welfare Road. Book directly through their site, and ask them about parking and kitchen details if those matter to you.</p>
+    <p>The garden terrace has room for two massage tables side by side, which makes it great for couples.</p>
+  </div>
+</section>
+<section class="band" style="padding:56px 0">
+  <div class="wrap measure">
+    <h2>A massage on your terrace at TheHills</h2>
+    <p>Couples massage on the garden terrace, or a quiet hour on your balcony. We've worked there before and know the setup. We bring the table, fresh linens, oils and towels, and set up in about 10 minutes. Relaxation massage starts at $105 for an hour. Couples start at $210.</p>
+    <p><a href="../../airbnb-massage/">How massage at your rental works</a></p>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">
+    <h2>Our services</h2>
+    <ul class="pages">
+      <li><a href="../../relaxation-massage/"><strong>Relaxation massage</strong><span>Gentle, full-body massage. Our most booked treatment.</span><em>from $105</em></a></li>
+      <li><a href="../../couples-massage/"><strong>Couples massage</strong><span>Two therapists, two tables, side by side.</span><em>from $210</em></a></li>
+      <li><a href="../../group-massage/"><strong>Group massage</strong><span>Bachelorettes, birthdays and whole-villa bookings.</span><em>$95 each</em></a></li>
+      <li><a href="../../yacht-massage/"><strong>Yacht massage</strong><span>On board at the dock or at anchor. Crew welcome.</span><em>from $105</em></a></li>
+      <li><a href="../../airbnb-massage/"><strong>Airbnb & villa rental massage</strong><span>We bring the spa to your rental.</span><em>from $105</em></a></li>
+    </ul>
+  </div>
+</section>
+<section id="book" class="dark book">
+  <div class="wrap">
+    <h2>Book your session</h2>
+    <p>WhatsApp is the quickest way to check availability and book, especially for same-day appointments. You can also call us.</p>
+    <a class="big-number" href="https://wa.me/17215540065"><span class="nw">+1-721-554-0065</span></a>
+    <div class="cta-row">
+      <a class="btn btn-wa" href="https://wa.me/17215540065?text=Hi%2C%20I%27d%20like%20to%20book%20an%20onsite%20massage" rel="noopener">Book on WhatsApp</a>
+      <a class="btn btn-line" href="tel:+17215540065">Call us</a>
+    </div>
+    <p class="beware"><strong>Beware of imitations.</strong> SXM Massage Onsite Service only takes bookings through sxm-massage-onsite.com and <span class="nw">+1-721-554-0065</span>. If someone gave you a different number or website, it isn't us. <a href="../../faq/#real">How to check</a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <p><strong>SXM Massage Onsite Service</strong></p>
+      <p>Onsite massage anywhere in St. Maarten and St. Martin: villas, hotel rooms, vacation rentals, yachts and beaches.</p>
+      <p>Open daily 7:30am – 8pm · Cash only · <span class="nw">+1-721-554-0065</span></p>
+      <p>© 2026 sxm-massage-onsite.com</p>
+    </div>
+    <nav aria-label="Services">
+      <a href="../../">Home</a>
+      <a href="../../relaxation-massage/">Relaxation massage</a>
+      <a href="../../couples-massage/">Couples massage</a>
+      <a href="../../group-massage/">Group massage</a>
+      <a href="../../yacht-massage/">Yacht massage</a>
+      <a href="../../airbnb-massage/">Airbnb & villa rental massage</a>
+      <a href="../../guide/">Complete guide</a>
+      <a href="../../where-to-stay/">Where to stay without a car</a>
+      <a href="../../faq/">FAQ</a>
+      <a href="../../fr/" hreflang="fr" lang="fr">Français</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/17215540065?text=Hi%2C%20I%27d%20like%20to%20book%20an%20onsite%20massage" rel="noopener"><span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></span><span class="wa-text">Book on WhatsApp<small>+1 721 554 0065</small></span></a>
+</body>
+</html>
