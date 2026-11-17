@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Analytics (skipped on localhost so testing doesn't count).
+     Loads after the page is ready (first scroll/tap, or 2.5s after load) so it doesn't slow the first screen.
+     A WhatsApp/call tap that happens before it has loaded waits up to ~1s so the click is still counted. -->
+<script>
+(function(){
+  var h=location.hostname;
+  if(!h||h==="localhost"||h==="127.0.0.1"||h.endsWith(".local")||h.endsWith(".test")) return;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments);};
+  gtag("js",new Date()); gtag("config","G-8R6DB76BGK");
+  var started=false, ready=false;
+  function load(){ if(started) return; started=true;
+    var s=document.createElement("script"); s.async=true; s.onload=function(){ready=true;};
+    s.src="https://www.googletagmanager.com/gtag/js?id=G-8R6DB76BGK"; document.head.appendChild(s); }
+  ["scroll","pointerdown","keydown","touchstart"].forEach(function(t){ addEventListener(t,load,{once:true,passive:true}); });
+  addEventListener("load",function(){ setTimeout(load,2500); });
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a"); if(!a) return;
+    var name, p={link_url:a.href}, txt=(a.textContent||"").trim().slice(0,60);
+    if(a.href.indexOf("wa.me/")>-1){ name="whatsapp_click"; p.link_text=txt; }
+    else if(a.href.indexOf("tel:")===0){ name="phone_call_click"; }
+    else if(a.hostname==="sxm-massage-mobile.com"){ name=a.pathname.indexOf("/blog")===0?"blog_click":"sister_site_click"; p.link_text=txt; }
+    if(!name) return;
+    var sameTab=!a.target||a.target==="_self", plain=!(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button);
+    if(ready||!sameTab||!plain){ load(); gtag("event",name,p); return; }
+    e.preventDefault(); load();
+    var gone=false; function go(){ if(gone) return; gone=true; location.href=a.href; }
+    p.event_callback=go; p.event_timeout=1000; gtag("event",name,p); setTimeout(go,1200);
+  });
+})();
+</script>
+<title>In-Room Hotel Massage in St. Maarten &amp; St. Martin</title>
+<meta name="description" content="In-room massage at your hotel in St. Maarten or St. Martin. A licensed therapist comes up to your room with a table, linens and oils. 60 min $105. Same day.">
+<link rel="canonical" href="https://sxm-massage-onsite.com/hotel-massage/">
+<meta name="theme-color" content="#16302A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SXM Massage Onsite Service">
+<meta property="og:title" content="In-Room Hotel Massage in St. Maarten &amp; St. Martin">
+<meta property="og:description" content="In-room massage at your hotel in St. Maarten or St. Martin. A licensed therapist comes up to your room with a table, linens and oils. 60 min $105. Same day.">
+<meta property="og:url" content="https://sxm-massage-onsite.com/hotel-massage/">
+<meta property="og:image" content="https://sxm-massage-onsite.com/images/sxm-onsite-massage-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SXM Massage Onsite Service: a full massage set up on site at your villa, hotel, Airbnb, yacht or beach in St. Maarten">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sxm-massage-onsite.com/images/sxm-onsite-massage-share.jpg">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="preload" href="../fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/style.css?v=20261117e">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "In-room hotel massage",
+  "serviceType": "In-room massage at hotels and resorts",
+  "description": "On-site massage in hotel rooms and resort suites in St. Maarten / St. Martin. Therapists bring their own table, linens and oils.",
+  "url": "https://sxm-massage-onsite.com/hotel-massage/",
+  "provider": {
+    "@type": "HealthAndBeautyBusiness",
+    "@id": "https://sxm-massage-onsite.com/#business",
+    "name": "SXM Massage Onsite Service",
+    "telephone": "+1-721-554-0065"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Sint Maarten"
+    },
+    {
+      "@type": "Place",
+      "name": "Saint-Martin"
+    }
+  ],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Relaxation massage, 60 min",
+      "price": "105",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Relaxation massage, 90 min",
+      "price": "160",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Couples massage, 60 min",
+      "price": "210",
+      "priceCurrency": "USD"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://sxm-massage-onsite.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hotel massage",
+      "item": "https://sxm-massage-onsite.com/hotel-massage/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need the hotel's permission for an in-room massage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not, since it's your room. Just tell the front desk a therapist is coming so they can send her up. Resorts in Maho and other busy areas often route visitors through reception, so a quick call ahead saves a wait in the lobby."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you come to my hotel today?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often, yes, when we have space. Same-day spots are limited, especially in Mount Vernon, Anse Marcel and Terres Basses, where traffic makes the drive longer. Book as early as you can to make sure you get your time. Message us on WhatsApp and we'll confirm the earliest opening."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there enough space in a hotel room?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One table needs about 2 x 3 meters (6 x 10 feet). Most rooms have that beside the bed or on the balcony. A couples massage needs about 3 x 3 meters (10 x 10 feet). If your room is small, send us a photo on WhatsApp and we'll tell you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we have a couples massage in our hotel room?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Two therapists bring two tables and set up side by side. It's $210 for 60 minutes, the same as at a villa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a hotel cost more than a villa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Prices are the same anywhere on the island, and travel is included. Sessions starting after 7pm add $20."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will massage oil get on the hotel's sheets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. We bring our own sheets and towels and put a cover down under the table, so the hotel's linens stay clean."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <span class="tb-hours">Open daily 7:30am – 8pm</span>
+    <span class="tb-book">Book: <a class="tb-phone" href="tel:+17215540065"><span class="nw">+1-721-554-0065</span></a> <a class="tb-wa" href="https://wa.me/17215540065?text=Hi%2C%20I%27d%20like%20to%20book%20an%20onsite%20massage" rel="noopener">WhatsApp</a></span>
+  </div>
+</div>
+<header class="wrap top">
+  <a class="brand" href="../">SXM Massage Onsite Service<small>sxm-massage-onsite.com</small></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav id="main-nav" aria-label="Main">
+    <a href="../relaxation-massage/">Relaxation</a>
+    <a href="../couples-massage/">Couples</a>
+    <a href="../group-massage/">Groups</a>
+    <a href="../hotel-massage/" aria-current="page">Hotels</a>
+    <a href="../yacht-massage/">Yachts</a>
+    <a href="../airbnb-massage/">Airbnbs</a>
+    <a href="../#about">About</a>
+    <a href="../faq/">FAQ</a>
+    <a href="../fr/" hreflang="fr" lang="fr" title="Version française">FR</a>
+    <a class="nav-m" href="../guide/">Complete guide</a>
+    <a class="nav-m" href="../where-to-stay/">Where to stay</a>
+    <a href="#book">Book</a>
+  </nav>
+</header>
+<script>
+(function(){
+  var h=document.querySelector('header.top'), b=h&&h.querySelector('.menu-btn'); if(!b) return;
+  function close(){ h.classList.remove('open'); b.setAttribute('aria-expanded','false'); }
+  b.addEventListener('click',function(){ var o=h.classList.toggle('open'); b.setAttribute('aria-expanded',o?'true':'false'); });
+  h.querySelectorAll('nav a').forEach(function(a){ a.addEventListener('click',close); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&h.classList.contains('open')){ close(); b.focus(); } });
+  document.addEventListener('click',function(e){ if(h.classList.contains('open')&&!h.contains(e.target)) close(); });
+})();
+</script>
+<main>
+<section class="hero sub">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="crumbs"><a href="../">Home</a> / Hotel massage</p>
+      <h1>In-room massage at your hotel</h1>
+      <p class="places">Skip the hotel spa. We come up to your room.</p>
+      <p class="lede">Staying at a hotel or resort in St. Maarten or St. Martin? A licensed therapist comes to your room or suite with a professional table, fresh sheets and oils, and sets up beside the bed or on the balcony. From $105 for 60 minutes, travel included.</p>
+      <div class="cta-row">
+        <a class="btn btn-wa" href="https://wa.me/17215540065?text=Hi%2C%20I%27d%20like%20to%20book%20an%20onsite%20massage" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Book on WhatsApp</a>
+        <a class="btn btn-line" href="#prices">See prices</a>
+      </div>
+    </div>
+    <div class="hero-photo"><img src="../images/hotel-suite-in-room-massage-ocean-view-st-maarten.webp" srcset="../images/hotel-suite-in-room-massage-ocean-view-st-maarten-800.webp 800w, ../images/hotel-suite-in-room-massage-ocean-view-st-maarten.webp 1376w" sizes="(max-width: 900px) 100vw, 780px" alt="Massage table in a bright hotel suite with orchids and an open balcony facing the sea" width="1376" height="768" fetchpriority="high" decoding="async" style="object-position:42% center"></div>
+  </div>
+</section>
+<section>
+  <div class="wrap two">
+    <div>
+      <h2>How a hotel massage works</h2>
+      <p class="measure">It takes a few messages, and many hotel bookings happen the same day.</p>
+      <ul class="ticks">
+        <li>Send us your hotel name and room number on WhatsApp</li>
+        <li>Tell the front desk a therapist is coming</li>
+        <li>Clear about 2 x 3 meters (6 x 10 feet) of floor or balcony</li>
+        <li>Relax. She packs everything away before she leaves</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Why book it in your room</h2>
+      <p class="measure">No walk through the lobby in a robe, no waiting room and no rush to get back. When your massage ends, you're already in your room, so you can shower, nap or head straight to dinner. Guests often book one after a long flight or a full day in the sun.</p>
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">
+    <h2>Hotel areas we cover</h2>
+    <p class="intro measure">We come to hotels and resorts all over the island, on both the Dutch and French sides, including these areas.</p>
+    <ul class="areas">
+      <li><a href="../where-to-stay/simpson-bay/">Simpson Bay</a></li>
+      <li>Maho</li>
+      <li>Cupecoy</li>
+      <li>Philipsburg</li>
+      <li>Pointe Blanche</li>
+      <li>Dawn Beach</li>
+      <li>Orient Bay <span>· French side</span></li>
+      <li>Grand Case <span>· French side</span></li>
+      <li>Anse Marcel <span>· French side</span></li>
+    </ul>
+  </div>
+</section>
+<section id="prices">
+  <div class="wrap">
+    <h2>Prices</h2>
+    <ul class="rate-cards">
+      <li class="rate-card linked">
+        <h3><a href="../relaxation-massage/">Relaxation massage</a></h3>
+        <p class="price">$105<span>60 min</span></p>
+        <p class="note">Gentle full-body massage. 90 minutes is $160.</p><span class="more" aria-hidden="true">See details</span>
+      </li>
+      <li class="rate-card linked">
+        <h3><a href="../couples-massage/">Couples massage</a></h3>
+        <p class="price">$210<span>60 min</span></p>
+        <p class="note">Two therapists, two tables, side by side in your room.</p><span class="more" aria-hidden="true">See details</span>
+      </li>
+    </ul>
+    <p class="rate-foot">Same price as a villa, travel included. Sessions after 7pm add $20. Cash only, in US dollars, paid to your therapist after the massage.</p>
+  </div>
+</section>
+<section id="faq" class="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Do I need the hotel's permission for an in-room massage?</summary>
+        <p>Usually not, since it's your room. Just tell the front desk a therapist is coming so they can send her up. Resorts in Maho and other busy areas often route visitors through reception, so a quick call ahead saves a wait in the lobby.</p>
+      </details>
+      <details>
+        <summary>Can you come to my hotel today?</summary>
+        <p>Often, yes, when we have space. Same-day spots are limited, especially in Mount Vernon, Anse Marcel and Terres Basses, where traffic makes the drive longer. Book as early as you can to make sure you get your time. Message us on WhatsApp and we'll confirm the earliest opening.</p>
+      </details>
+      <details>
+        <summary>Is there enough space in a hotel room?</summary>
+        <p>One table needs about 2 x 3 meters (6 x 10 feet). Most rooms have that beside the bed or on the balcony. A couples massage needs about 3 x 3 meters (10 x 10 feet). If your room is small, send us a photo on WhatsApp and we'll tell you.</p>
+      </details>
+      <details>
+        <summary>Can we have a couples massage in our hotel room?</summary>
+        <p>Yes. Two therapists bring two tables and set up side by side. It's $210 for 60 minutes, the same as at a villa. <a href="../couples-massage/">More about couples massage</a>.</p>
+      </details>
+      <details>
+        <summary>Does a hotel cost more than a villa?</summary>
+        <p>No. Prices are the same anywhere on the island, and travel is included. Sessions starting after 7pm add $20.</p>
+      </details>
+      <details>
+        <summary>Will massage oil get on the hotel's sheets?</summary>
+        <p>No. We bring our own sheets and towels and put a cover down under the table, so the hotel's linens stay clean.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">
+    <h2>More ways to book</h2>
+    <ul class="pages">
+      <li><a href="../relaxation-massage/"><strong>Relaxation massage</strong><span>Gentle, full-body massage. Our most booked treatment.</span><em>from $105</em></a></li>
+      <li><a href="../couples-massage/"><strong>Couples massage</strong><span>Two therapists, two tables, side by side.</span><em>from $210</em></a></li>
+      <li><a href="../airbnb-massage/"><strong>Airbnb & villa massage</strong><span>Turn your vacation rental into a private spa for the day.</span><em>from $105</em></a></li>
+      <li><a href="../yacht-massage/"><strong>Yacht massage</strong><span>On board at the dock or at anchor. Crew welcome.</span><em>from $105</em></a></li>
+    </ul>
+  </div>
+</section>
+<section id="book" class="dark book">
+  <div class="wrap">
+    <h2>Book your session</h2>
+    <p>WhatsApp is the quickest way to check availability and book, especially for same-day appointments. You can also call us.</p>
+    <a class="big-number" href="https://wa.me/17215540065"><span class="nw">+1-721-554-0065</span></a>
+    <div class="cta-row">
+      <a class="btn btn-wa" href="https://wa.me/17215540065?text=Hi%2C%20I%27d%20like%20to%20book%20an%20onsite%20massage" rel="noopener">Book on WhatsApp</a>
+      <a class="btn btn-line" href="tel:+17215540065">Call us</a>
+    </div>
+    <p class="beware"><strong>Beware of imitations.</strong> SXM Massage Onsite Service only takes bookings through sxm-massage-onsite.com and <span class="nw">+1-721-554-0065</span>. If someone gave you a different number or website, it isn't us. <a href="../faq/#real">How to check</a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <p><strong>SXM Massage Onsite Service</strong></p>
+      <p>Onsite massage anywhere in St. Maarten and St. Martin: villas, hotel rooms, vacation rentals, yachts and beaches.</p>
+      <p>Open daily 7:30am – 8pm · Cash only · <span class="nw">+1-721-554-0065</span></p>
+      <p>© 2026 sxm-massage-onsite.com</p>
+    </div>
+    <nav aria-label="Services">
+      <a href="../">Home</a>
+      <a href="../relaxation-massage/">Relaxation massage</a>
+      <a href="../couples-massage/">Couples massage</a>
+      <a href="../group-massage/">Group massage</a>
+      <a href="../hotel-massage/">Hotel room massage</a>
+      <a href="../yacht-massage/">Yacht massage</a>
+      <a href="../airbnb-massage/">Airbnb & villa rental massage</a>
+      <a href="../guide/">Complete guide</a>
+      <a href="../where-to-stay/">Where to stay without a car</a>
+      <a href="../faq/">FAQ</a>
+      <a href="../fr/" hreflang="fr" lang="fr">Français</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/17215540065?text=Hi%2C%20I%27d%20like%20to%20book%20an%20onsite%20massage" rel="noopener"><span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></span><span class="wa-text">Book on WhatsApp<small>+1 721 554 0065</small></span></a>
+<dialog class="lightbox" id="lightbox" aria-label="Photo">
+  <button type="button" class="lb-close" aria-label="Close photo">&times;</button>
+  <img alt="">
+  <p class="lb-cap"></p>
+</dialog>
+<script>
+(function(){
+  var d=document.getElementById('lightbox'); if(!d||!d.showModal) return;
+  var im=d.querySelector('img'), cap=d.querySelector('.lb-cap');
+  document.querySelectorAll('a.lb').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault(); var t=a.querySelector('img');
+      im.src=a.href; im.alt=t.alt; cap.textContent=a.dataset.caption||''; d.showModal();
+    });
+  });
+  d.querySelector('.lb-close').addEventListener('click',function(){d.close()});
+  d.addEventListener('click',function(e){ if(e.target===d) d.close(); });
+})();
+</script>
+</body>
+</html>
