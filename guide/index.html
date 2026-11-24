@@ -24,7 +24,6 @@
     var name, p={link_url:a.href}, txt=(a.textContent||"").trim().slice(0,60);
     if(a.href.indexOf("wa.me/")>-1){ name="whatsapp_click"; p.link_text=txt; }
     else if(a.href.indexOf("tel:")===0){ name="phone_call_click"; }
-    else if(a.hostname==="sxm-massage-mobile.com"){ name=a.pathname.indexOf("/blog")===0?"blog_click":"sister_site_click"; p.link_text=txt; }
     if(!name) return;
     var sameTab=!a.target||a.target==="_self", plain=!(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button);
     if(ready||!sameTab||!plain){ load(); gtag("event",name,p); return; }
@@ -221,7 +220,7 @@
 <section class="band">
   <div class="wrap">
     <h2>Who the service suits</h2>
-    <p class="intro measure">The same team handles very different settings. Each one has a few practical details worth knowing in advance.</p>
+    <p class="intro measure">Our therapists work in very different settings. Each one has a few practical details worth knowing in advance.</p>
     <ul class="moments">
       <li><h3>Couples</h3><p>A couples massage uses two therapists on two tables side by side. That way you both enjoy your massage at the same time. The 60-minute session is $210 and the 90-minute version is $315. Most people book it for an anniversary or a honeymoon evening, on a pool deck or covered terrace. Plus, you skip the drive and the spa reception. <a href="../couples-massage/">More about couples massage</a>.</p></li>
       <li><h3>Hotel guests</h3><p>In-room hotel massage is $105 for 60 minutes, and the therapist comes up to your room. Tell the front desk that a therapist is on the way. Hotels in Maho and other resort areas often route visitors through reception, so a quick call ahead prevents a wait in the lobby. <a href="../hotel-massage/">More about hotel massage</a>.</p></li>

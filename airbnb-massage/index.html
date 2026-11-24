@@ -24,7 +24,6 @@
     var name, p={link_url:a.href}, txt=(a.textContent||"").trim().slice(0,60);
     if(a.href.indexOf("wa.me/")>-1){ name="whatsapp_click"; p.link_text=txt; }
     else if(a.href.indexOf("tel:")===0){ name="phone_call_click"; }
-    else if(a.hostname==="sxm-massage-mobile.com"){ name=a.pathname.indexOf("/blog")===0?"blog_click":"sister_site_click"; p.link_text=txt; }
     if(!name) return;
     var sameTab=!a.target||a.target==="_self", plain=!(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button);
     if(ready||!sameTab||!plain){ load(); gtag("event",name,p); return; }

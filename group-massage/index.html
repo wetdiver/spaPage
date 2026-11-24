@@ -24,7 +24,6 @@
     var name, p={link_url:a.href}, txt=(a.textContent||"").trim().slice(0,60);
     if(a.href.indexOf("wa.me/")>-1){ name="whatsapp_click"; p.link_text=txt; }
     else if(a.href.indexOf("tel:")===0){ name="phone_call_click"; }
-    else if(a.hostname==="sxm-massage-mobile.com"){ name=a.pathname.indexOf("/blog")===0?"blog_click":"sister_site_click"; p.link_text=txt; }
     if(!name) return;
     var sameTab=!a.target||a.target==="_self", plain=!(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button);
     if(ready||!sameTab||!plain){ load(); gtag("event",name,p); return; }
@@ -128,7 +127,7 @@
       "name": "Can you host more than 9 people?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. We cap groups at 9 so the session stays relaxed. For bigger groups, St. Maarten Massage Service runs group deals with more therapists at once."
+        "text": "No. We cap groups at 9 so the session stays relaxed and every guest gets the time they booked."
       }
     },
     {
@@ -238,7 +237,6 @@
       <li><h3>It fits more villas</h3><p>One to three tables need far less room than six, so a small deck or living room works too.</p></li>
       <li><h3>Mornings come with pastries</h3><p>Book a morning session and we bring fresh pastries from a real French pastry shop.</p></li>
     </ul>
-    <p class="measure">Want everyone on a table at the same time, at a lower price? <a href="https://st-maarten-mobile-massage-service.com/option/spa-group-deals.html" rel="noopener">St. Maarten Massage Service runs group deals</a> with more therapists at once. We just find our way more relaxing.</p>
   </div>
 </section>
 <section>
@@ -310,7 +308,7 @@
       </details>
       <details>
         <summary>Can you host more than 9 people?</summary>
-        <p>No. We cap groups at 9 so the session stays relaxed. For bigger groups, <a href="https://st-maarten-mobile-massage-service.com/option/spa-group-deals.html" rel="noopener">St. Maarten Massage Service</a> runs group deals with more therapists at once.</p>
+        <p>No. We cap groups at 9 so the session stays relaxed and every guest gets the time they booked.</p>
       </details>
       <details>
         <summary>Can we choose male or female therapists?</summary>

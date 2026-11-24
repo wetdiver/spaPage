@@ -11,9 +11,9 @@ Change a file directly in GoDaddy and the monitor will flag it, and the next upl
 |---|---|
 | Site is up | All 9 pages load, each in under 5 seconds |
 | No surprise changes | Every live page, photo, video and file matches this GitHub copy |
-| Your phone number | +1 721 554 0065 is on every WhatsApp and call button, and no other number appears (the SXM Massage Mobile number in the FAQ is allowed) |
+| Your phone number | +1 721 554 0065 is on every WhatsApp and call button, and no other number appears |
 | Prices | Every price on every page is the same as the GitHub copy |
-| Nothing broken | All photos, videos, the host card PDF and outside links (like sxm-massage-mobile.com) work |
+| Nothing broken | All photos, videos, the host card PDF and outside links work |
 | Google can see you | Titles and canonicals unchanged, no hidden "noindex", robots.txt and sitemap OK |
 | Security lock (SSL) | Warns 14 days before the https certificate expires |
 | Redirects | http:// and www. both send visitors to https://sxm-massage-onsite.com |

@@ -24,7 +24,6 @@
     var name, p={link_url:a.href}, txt=(a.textContent||"").trim().slice(0,60);
     if(a.href.indexOf("wa.me/")>-1){ name="whatsapp_click"; p.link_text=txt; }
     else if(a.href.indexOf("tel:")===0){ name="phone_call_click"; }
-    else if(a.hostname==="sxm-massage-mobile.com"){ name=a.pathname.indexOf("/blog")===0?"blog_click":"sister_site_click"; p.link_text=txt; }
     if(!name) return;
     var sameTab=!a.target||a.target==="_self", plain=!(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button);
     if(ready||!sameTab||!plain){ load(); gtag("event",name,p); return; }
@@ -164,14 +163,7 @@
     <p><strong>Anse Marcel</strong> is a quiet cove on the north side. It's gorgeous and peaceful, but it's tucked away, so groceries and dinner out mean driving.</p>
     <p><strong>Mont Vernon</strong> sits up in the hills above Orient Bay. You get the views, but walking those hills in the heat gets old fast.</p>
     <p><strong>Friar's Bay</strong> is a calm little beach on the French side. It's a great day out. As a home base without a car, though, you'll spend a lot on taxis.</p>
-    <p>All three are on the French side. New to the two names? Here's a good explainer on <a href="https://sxm-massage-mobile.com/blog/travel-tips/st-maarten-vs-st-martin-what-first-time-visitors-get-wrong/">what first-time visitors get wrong about St. Maarten and St. Martin</a>.</p>
-  </div>
-</section>
-<!-- BLOG-SNIPPETS: the weekly post adds short snippets with links here, newest first -->
-<section class="band" style="padding:56px 0">
-  <div class="wrap measure">
-    <h2>Keep reading</h2>
-    <p>Watching the budget? Taxis, groceries and beach chairs add up fast. <a href="https://sxm-massage-mobile.com/blog/travel-tips/st-maarten-on-a-budget-what-groups-should-know-before-you-land/">St Maarten on a budget: what groups should know before you land</a> breaks down the costs people don't plan for.</p>
+    <p>All three are on the French side.</p>
   </div>
 </section>
 <section class="band" style="padding:56px 0">

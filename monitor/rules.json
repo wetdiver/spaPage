@@ -1,9 +1,7 @@
 {
   "site": "https://sxm-massage-onsite.com",
   "phone_digits": "17215540065",
-  "also_allowed_numbers": {
-    "17215265574": "SXM Massage Mobile sister site (listed in the FAQ on purpose)"
-  },
+  "also_allowed_numbers": {},
   "max_page_seconds": 5,
   "ssl_warn_days": 14,
   "skip_link_hosts": [
